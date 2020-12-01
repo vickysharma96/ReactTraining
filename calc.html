@@ -1,0 +1,103 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+
+    <style>
+        fieldset {
+            width: 60%;
+            margin: 20px;
+        }
+    </style>
+
+   
+
+</head>
+
+<body>
+    <fieldset>
+        <legend>Toolbar</legend>
+        <div>
+            Number
+            <input type='number' id='number' />
+            <input type='button' value='Add To List' onclick="addToList()"  />
+            <input type='button' value='Clear Display' onclick='' />
+            <input type='button' value='Reset Calculator' onclick=""   />
+
+            <br/>
+            <input type='button' value='Sum'  onclick="sumOfNumbers()" />
+            <input type='button' value='Average' onclick="averageOfNumbers()" />
+            <input type='button' value='Find Min' onclick="findMin()" />
+
+        </div>
+
+    </fieldset>
+
+    <hr/>
+
+    <fieldset>
+        <legend>Console</legend>
+
+        <div id='console'>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Number List</legend>
+
+        <ul id='numberList'>
+
+        </ul>
+
+        <input type='button' value='refresh list'  />
+    </fieldset>
+</body>
+
+<script>
+    function addToList(){
+        var text = document.getElementById("number").value;
+        var ul = document.getElementById("numberList");
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(text));
+        ul.appendChild(li);
+    }
+    function sumOfNumbers(){
+        const ul = document.querySelectorAll('ul li');
+            var sum = 0;
+            for (let i = 0; i <= ul.length - 1; i++) {
+                sum = sum + parseInt(ul[i].innerHTML);
+            }
+            document.getElementById('console').innerHTML = "Sum: " + sum;
+    }
+    function averageOfNumbers(){
+        const ul = document.querySelectorAll('ul li');
+            var sum = 0;
+            var avg = 0;
+            for (let i = 0; i <= ul.length - 1; i++) {
+                sum = sum + parseInt(ul[i].innerHTML);
+            }
+            avg = sum/ul.length-1;
+            document.getElementById('console').innerHTML = "Average: " + avg;
+    }
+    function findMin(){
+        const ul = document.querySelectorAll('ul li');
+            var min = ul[0].innerHTML;
+            var avg = 0;
+            for (let i = 0; i <= ul.length - 1; i++) {
+                if(min>ul[i].innerHTML){
+                    min = ul[i].innerHTML
+                }
+            }
+            document.getElementById('console').innerHTML = "Min: " + min;
+    }
+</script>
+
+</html>
